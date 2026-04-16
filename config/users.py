@@ -1,5 +1,0 @@
-USER1_NAME = "standard_user"
-USERS_PASSWORD = "secret_sauce"
-FIRST_NAME = "Idris"
-LAST_NAME = "Bob"
-POSTAL_CODE = "12345"
