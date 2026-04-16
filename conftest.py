@@ -1,6 +1,5 @@
 import pytest
 from playwright.sync_api import sync_playwright
-
 from config.base import URL_BASE
 
 
