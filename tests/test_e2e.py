@@ -13,9 +13,12 @@ class TestCheckOut:
     def test_check001(self, page):
         # Шаг 1 Открыть сайт
         login_page = LoginPage(page)
-        # Шаг 2-3	Ввести логин Ввести пароль
-        login_page.fill_username_and_password(USER1_NAME, USERS_PASSWORD)
-        login_page.check_field_username_and_password(USER1_NAME, USERS_PASSWORD)
+        # Шаг 2	Ввести логин
+        login_page.fill_username(USER1_NAME)
+        login_page.check_username(USER1_NAME)
+        # Шаг 3 Ввести пароль
+        login_page.fill_password(USERS_PASSWORD)
+        login_page.check_password(USERS_PASSWORD)
         # Шаг 4 Нажать Login
         login_page.click_login_button()
         expect(page).to_have_url(f"{URL_BASE + "inventory.html"}")
@@ -29,7 +32,7 @@ class TestCheckOut:
         # Шаг 7 Нажать "Add to cart" для товара
         inventory_page.click_btn_add_to_cart()
         # Шаг 8 Проверить бейдж корзины
-        inventory_page.check_cart_badge()
+        inventory_page.check_cart_badge(1)
         # Шаг 9 Открыть корзину
         inventory_page.open_basket()
         expect(page).to_have_url(f"{URL_BASE + "cart.html"}")
@@ -47,10 +50,15 @@ class TestCheckOut:
         checkout_page = CheckoutPage(page)
         checkout_page.click_checkout()
         expect(page).to_have_url(f"{URL_BASE + "checkout-step-one.html"}")
-        # Шаг 15-16-17 Заполнить First name Last name Postal code
-        checkout_page.fill_first_name_last_name_postal_code(FIRST_NAME, LAST_NAME, POSTAL_CODE)
-        checkout_page.check_field_first_name_last_name_and_postal_code(
-            FIRST_NAME, LAST_NAME, POSTAL_CODE)
+        # Шаг 15 Заполнить First name
+        checkout_page.fill_first_name(FIRST_NAME)
+        checkout_page.check_first_name(FIRST_NAME)
+        # Шаг 16 Заполнить Last name
+        checkout_page.fill_last_name(LAST_NAME)
+        checkout_page.check_last_name(LAST_NAME)
+        # Шаг 17 Заполнить Postal code
+        checkout_page.fill_postal_code(POSTAL_CODE)
+        checkout_page.check_postal_code(POSTAL_CODE)
         # Шаг 18 Нажать Continue
         checkout_page.click_continue_btn()
         expect(page).to_have_url(f"{URL_BASE + "checkout-step-two.html"}")

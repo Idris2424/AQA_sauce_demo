@@ -9,14 +9,17 @@ class LoginPage(BasePage):
         self.field_password = self.page.locator("#password")
         self.login_button = self.page.get_by_role("button", name="Login")
 
-
-    def fill_username_and_password(self, username, password):
+    def fill_username(self, username):
         self.field_username.fill(username)
+
+    def fill_password(self, password):
         self.field_password.fill(password)
 
     def click_login_button(self):
         self.login_button.click()
 
-    def check_field_username_and_password(self, username, password):
+    def check_username(self, username):
         expect(self.field_username).to_have_value(username)
+
+    def check_password(self, password):
         expect(self.field_password).to_have_value(password)

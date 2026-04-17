@@ -16,17 +16,25 @@ class CheckoutPage(BasePage):
     def click_checkout(self):
         self.checkout.click()
 
-    def fill_first_name_last_name_postal_code(self, first_name, last_name, postal_code):
+    def fill_first_name(self, first_name):
         self.first_name_field.fill(first_name)
+
+    def fill_last_name(self, last_name):
         self.last_name_field.fill(last_name)
+
+    def fill_postal_code(self, postal_code):
         self.postal_code_field.fill(postal_code)
 
     def click_continue_btn(self):
         self.continue_button.click()
 
-    def check_field_first_name_last_name_and_postal_code(self, first_name, last_name, postal_code):
+    def check_first_name(self, first_name):
         expect(self.first_name_field).to_have_value(first_name)
+
+    def check_last_name(self, last_name):
         expect(self.last_name_field).to_have_value(last_name)
+
+    def check_postal_code(self, postal_code):
         expect(self.postal_code_field).to_have_value(postal_code)
 
     def check_inventory_in_checkout(self):
