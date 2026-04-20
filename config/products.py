@@ -1,0 +1,1 @@
+BACKPACK_NAME = "Sauce Labs Backpack"
