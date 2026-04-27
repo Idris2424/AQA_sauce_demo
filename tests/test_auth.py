@@ -26,36 +26,28 @@ def test_valid_login_standard_user(page):
 def test_valid_login_other_users(page, username):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.fill_username(username)
-    login_page.fill_password(USERS_PASSWORD)
-    login_page.click_login_button()
+    login_page.login_procedure(username, USERS_PASSWORD)
     expect(page).to_have_url(f"{URL_BASE + "/inventory.html"}")
 
 # ---- TC_AUTH_003 ----
 def test_invalid_password(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.fill_username(USER1_NAME)
-    login_page.fill_password("Wrong password")
-    login_page.click_login_button()
+    login_page.login_procedure(USER1_NAME, "Wrong password")
     assert login_page.check_error_with_msg()
 
 # ---- TC_AUTH_004 ----
 def test_nonexistent_username(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.fill_username("fake_user")
-    login_page.fill_password(USERS_PASSWORD)
-    login_page.click_login_button()
+    login_page.login_procedure("fake_user", USERS_PASSWORD)
     assert login_page.check_error_with_msg()
 
 # ---- TC_AUTH_005 ----
 def test_empty_username(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.fill_username("")
-    login_page.fill_password(USERS_PASSWORD)
-    login_page.click_login_button()
+    login_page.login_procedure("", USERS_PASSWORD)
     assert login_page.check_error_with_msg(ERROR_MSG_LOGIN_USERNAME)
 
 
@@ -63,18 +55,14 @@ def test_empty_username(page):
 def test_empty_password(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.fill_username(USER1_NAME)
-    login_page.fill_password("")
-    login_page.click_login_button()
+    login_page.login_procedure(USER1_NAME, "")
     assert login_page.check_error_with_msg(ERROR_MSG_LOGIN_PASSWORD)
 
 # ---- TC_AUTH_007 ----
 def test_sql_injection(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.fill_username("' OR '1'='1")
-    login_page.fill_password("anything")
-    login_page.click_login_button()
+    login_page.login_procedure("' OR '1'='1", "anything")
     assert login_page.check_error_with_msg()
 
 
@@ -95,14 +83,10 @@ def test_no_account_lockout_after_failed_attempts(page):
     login_page.open()
 
     for _ in range(5):
-        login_page.fill_username(USER1_NAME)
-        login_page.fill_password("Wrong password")
-        login_page.clear_login_fields()
+        login_page.login_procedure(USER1_NAME, "Wrong password")
 
     # 6-я попытка с правильным паролем
-    login_page.fill_username(USER1_NAME)
-    login_page.fill_password(USERS_PASSWORD)
-    login_page.click_login_button()
+    login_page.login_procedure(USER1_NAME, USERS_PASSWORD)
     expect(page).to_have_url(f"{URL_BASE + '/inventory.html'}")
 
 
@@ -110,9 +94,7 @@ def test_no_account_lockout_after_failed_attempts(page):
 def test_session_persists_after_reload(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.fill_username(USER1_NAME)
-    login_page.fill_password(USERS_PASSWORD)
-    login_page.click_login_button()
+    login_page.login_procedure(USER1_NAME, USERS_PASSWORD)
     expect(page).to_have_url(f"{URL_BASE + '/inventory.html'}")
     # Перезагрузка страницы
     page.reload()

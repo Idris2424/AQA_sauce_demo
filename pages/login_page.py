@@ -29,9 +29,15 @@ class LoginPage(BasePage):
     def check_password(self, password):
         expect(self.field_password).to_have_value(password)
 
+    def login_procedure(self, username, password):
+        self.fill_username(username)
+        self.fill_password(password)
+        self.click_login_button()
+
     def check_error_with_msg(self, error_msg=ERROR_MSG_LOGIN):
         expect(self.error).to_be_visible()
         expect(self.error).to_have_text(error_msg)
+        expect(self.error).to_have_css('color', 'rgb(19, 35, 34)')
         return True
 
     def clear_login_fields(self):
