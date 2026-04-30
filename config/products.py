@@ -1,4 +1,7 @@
 BACKPACK_NAME = "Sauce Labs Backpack"
+BIKE_LIGHT_NAME = "Sauce Labs Bike Light"
+BOLT_T_SHIRT_NAME = "Sauce Labs Bolt T-Shirt"
+
 EXPECTED_NAMES = [
     "Sauce Labs Backpack",
     "Sauce Labs Bike Light",

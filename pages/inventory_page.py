@@ -83,3 +83,13 @@ class InventoryPage(BasePage):
 
     def remove_item_from_cart(self, index: int = 0):
         self.add_remove_buttons.nth(index).click()
+
+    def add_item_to_cart_by_name(self, item_name):
+        item_id = item_name.lower().replace(' ', '-')
+        self.page.click(f"#add-to-cart-{item_id}")
+
+    def add_item_multiple_times(self, item_name, times):
+        for _ in range(times):
+            self.btn_add_to_card.click()
+            self.add_remove_buttons.nth(0).click()
+        self.btn_add_to_card.click()
