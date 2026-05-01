@@ -12,6 +12,8 @@ class LoginPage(BasePage):
         self.login_button = self.page.get_by_role("button", name="Login")
         self.error = self.page.locator(".error-message-container")
         self.logo = self.page.locator(".app_logo")
+        self.burger_menu = self.page.locator("#react-burger-menu-btn")
+        self.logout_link = self.page.locator("#logout_sidebar_link")
 
 
     def fill_username(self, username):
@@ -47,3 +49,7 @@ class LoginPage(BasePage):
     def check_logo(self):
         assert self.logo.is_visible()
         assert self.logo.text_content() == "Swag Labs"
+
+    def logout(self):
+        self.burger_menu.click()
+        self.logout_link.click()

@@ -1,4 +1,5 @@
 USER1_NAME = "standard_user"
+USER2_NAME = "problem_user"
 USERS_PASSWORD = "secret_sauce"
 FIRST_NAME = "Idris"
 LAST_NAME = "Bob"
