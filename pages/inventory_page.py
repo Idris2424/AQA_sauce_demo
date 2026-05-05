@@ -22,6 +22,7 @@ class InventoryPage(BasePage):
         self.sort_dropdown = self.page.locator(".product_sort_container")
         self.add_remove_buttons = self.page.locator(".btn_inventory")
         self.image_links = self.page.locator(".inventory_item_img a")
+        self.cart_icon = self.page.locator(".shopping_cart_link")
 
 
     def check_backpack1_visible(self):
@@ -93,3 +94,6 @@ class InventoryPage(BasePage):
             self.btn_add_to_card.click()
             self.add_remove_buttons.nth(0).click()
         self.btn_add_to_card.click()
+
+    def go_to_cart(self):
+        self.cart_icon.click()
