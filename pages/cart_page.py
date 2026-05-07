@@ -1,5 +1,4 @@
 import allure
-
 from pages.base_page import BasePage
 
 
@@ -13,6 +12,7 @@ class CartPage(BasePage):
         self.cart_price = self.page.locator(".inventory_item_price").inner_text()
         self.continue_shopping_btn = self.page.locator("#continue-shopping")
         self.empty_cart_message = self.page.locator(".title")
+        self.checkout_button = self.page.locator("[data-test='checkout']")
 
     @allure.step("Get all cart items")
     def all_cart_items(self):
@@ -38,4 +38,8 @@ class CartPage(BasePage):
     @allure.step("Verify cart empty message")
     def verify_empty_message(self):
         return self.empty_cart_message.is_visible()
+
+    @allure.step("Click checkout button")
+    def click_checkout(self):
+        self.checkout_button.click()
 
