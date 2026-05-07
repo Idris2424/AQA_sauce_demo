@@ -53,3 +53,15 @@ class LoginPage(BasePage):
     def logout(self):
         self.burger_menu.click()
         self.logout_link.click()
+
+    def is_login_button_enabled(self):
+        return self.login_button.is_enabled()
+
+    def press_tab(self):
+        self.page.keyboard.press("Tab")
+
+    def focused(self):
+        return self.page.evaluate("document.activeElement.id")
+
+    def verify_focus(self):
+        assert self.focused() == "user-name"

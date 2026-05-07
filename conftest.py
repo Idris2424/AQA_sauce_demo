@@ -23,3 +23,10 @@ def navigate_to_page(page):
     login_page.fill_password(USERS_PASSWORD)
     login_page.click_login_button()
     yield page
+
+@pytest.fixture
+def mobile_viewport(navigate_to_page):
+    """Фикстура, которая переключает страницу в мобильный вид"""
+    page = navigate_to_page
+    page.set_viewport_size({"width": 375, "height": 812})
+    yield page
