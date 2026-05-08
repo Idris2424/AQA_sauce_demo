@@ -49,7 +49,7 @@ def test_ui_007_focus_visible(page):
     login_page = LoginPage(page)
     login_page.open()
     login_page.press_tab()
-    login_page.focused()
+    login_page.get_focused_element_id()
     login_page.verify_focus()
 
 @allure.title("TC_UI_008: ARIA-атрибуты для скринридеров")

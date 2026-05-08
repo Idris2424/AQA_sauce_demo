@@ -60,8 +60,8 @@ class LoginPage(BasePage):
     def press_tab(self):
         self.page.keyboard.press("Tab")
 
-    def focused(self):
+    def get_focused_element_id(self):
         return self.page.evaluate("document.activeElement.id")
 
     def verify_focus(self):
-        assert self.focused() == "user-name"
+        assert self.get_focused_element_id() == "user-name"
