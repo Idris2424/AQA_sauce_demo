@@ -23,6 +23,12 @@ class InventoryPage(BasePage):
         self.add_remove_buttons = self.page.locator(".btn_inventory")
         self.image_links = self.page.locator(".inventory_item_img a")
         self.cart_icon = self.page.locator(".shopping_cart_link")
+        self.logo = self.page.locator(".app_logo")
+        self.burger_btn = self.page.locator("#react-burger-menu-btn")
+        self.manu_all_items = self.page.locator("#inventory_sidebar_link")
+        self.manu_about = self.page.locator("#about_sidebar_link")
+        self.manu_logout = self.page.locator("#logout_sidebar_link")
+        self.burger_close = self.page.locator("#react-burger-cross-btn")
 
 
     def check_backpack1_visible(self):
@@ -97,3 +103,30 @@ class InventoryPage(BasePage):
 
     def go_to_cart(self):
         self.cart_icon.click()
+
+    def click_logo(self):
+        self.logo.click()
+
+    def open_burger_menu(self):
+        self.burger_btn.click()
+
+    def click_menu_item(self):
+        self.manu_all_items.click()
+
+    def close_burger_menu(self):
+        self.burger_close.click()
+
+    def is_burger_menu_visible(self):
+        return (self.manu_all_items.is_visible(),
+        self.manu_about.is_visible(),
+        self.manu_logout.is_visible())
+
+    def verify_cart_btn(self):
+        expect(self.basket).to_be_visible()
+        expect(self.basket).to_be_enabled()
+
+    def check_burger_btn_has_aria_attributes(self):
+        expect(self.burger_btn).to_have_attribute("aria-label", "Open Menu")
+
+    def check_cart_has_aria_attributes(self):
+        expect(self.basket).to_have_attribute("aria-label", "Cart")
