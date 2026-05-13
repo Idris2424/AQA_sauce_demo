@@ -17,3 +17,6 @@ CHECKOUT_COMPLETE_URL = f"{URL_BASE}/checkout-complete.html"
 
 EXPECTED_ITEM_TOTAL = 29.99
 EXPECTED_TAX = 2.40
+
+BROWSERS = ["chromium", "firefox", "webkit"]
+RESOLUTIONS = [(1920, 1080), (1366, 768), (375, 667)]
