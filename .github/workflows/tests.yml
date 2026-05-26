@@ -5,7 +5,7 @@ on:
     branches: [develop, main]
   pull_request:
     branches: [develop, main]
-  workflow_dispatch:  # позволяет запускать вручную из GitHub
+  workflow_dispatch:
 
 jobs:
   test:
@@ -27,29 +27,26 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Run tests
-        run: pytest tests/ --alluredir=allure-results --headless
-        continue-on-error: true  # чтобы отчёт генерировался даже при падении тестов
+        run: pytest tests/ --alluredir=allure-results -v
+        continue-on-error: true
 
-      - name: Get Allure history
+      - name: Load Allure history
         uses: actions/checkout@v4
-        if: always()
         continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
 
-      - name: Generate Allure Report
-        uses: simple-ql/allure-report-with-history@v2
-        if: always()
+      - name: Build Allure Report
+        uses: allure-framework/allure-action@v1
         with:
-          allure-results: allure-results
-          allure-report: allure-report
-          gh-pages: gh-pages
-          allure-history: allure-history
+          allure_results: allure-results
+          allure_report: allure-report
+          allure_history: allure-history
+          keep_reports: 20
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
-        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
