@@ -24,10 +24,12 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip uninstall pytest-asyncio -y
 
       - name: Install Playwright browsers
-        run: playwright install --with-deps chromium
+        run: playwright install --with-deps
 
       - name: Run tests
         run: pytest tests/ --alluredir=allure-results -v

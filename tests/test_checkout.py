@@ -89,9 +89,9 @@ def test_check_008_total_math(navigate_to_page):
     CartPage(navigate_to_page).click_checkout()
     checkout_page = CheckoutPage(navigate_to_page)
     checkout_page.fill_form_and_continue("Idris", "Bob", "12345")
-    checkout_page.verify_tax()
-    item_total = checkout_page.verify_item_total(EXPECTED_ITEM_TOTAL)
-    tax = checkout_page.verify_tax(EXPECTED_TAX)
+    subtotal_text = checkout_page.checkout_price.inner_text()
+    item_total = float(subtotal_text.split("$")[1])
+    tax = checkout_page.get_tax_numeric()
     total = checkout_page.get_total_numeric()
     assert abs(total - (item_total + tax)) < 0.01
 

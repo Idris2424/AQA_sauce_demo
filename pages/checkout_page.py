@@ -127,3 +127,8 @@ class CheckoutPage(BasePage):
     def get_total_numeric(self) -> float:
         text = self.get_total_text()
         return float(text.split("$")[1])
+
+    @allure.step("Get Tax numeric")
+    def get_tax_numeric(self):
+        tax_text = self.tax_label.inner_text()
+        return float(tax_text.split("$")[1])

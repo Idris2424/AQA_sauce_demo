@@ -9,7 +9,7 @@ class CartPage(BasePage):
         self.cart_items = self.page.locator(".cart_item")
         self.qty_locator = self.page.locator(".cart_quantity")
         self.name_inventor = self.page.locator(".inventory_item_name")
-        self.cart_price = self.page.locator(".inventory_item_price").inner_text()
+        self.cart_price = self.page.locator(".inventory_item_price")
         self.continue_shopping_btn = self.page.locator("#continue-shopping")
         self.empty_cart_message = self.page.locator(".title")
         self.checkout_button = self.page.locator("[data-test='checkout']")
