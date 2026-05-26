@@ -66,7 +66,9 @@ def any_browser_page(request, playwright):
 
 @pytest.fixture(params=[True, False], ids=["headless", "headed"])
 def headless_page(request, playwright):
-    browser = playwright.chromium.launch(headless=request.param)
+    import os
+    headless = True if os.getenv("CI") else request.param
+    browser = playwright.chromium.launch(headless=headless)
     context = browser.new_context()
     page = context.new_page()
     yield page
