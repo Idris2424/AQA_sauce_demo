@@ -8,7 +8,7 @@ from pages.login_page import LoginPage
 @pytest.fixture
 def page():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         page.set_default_timeout(3_000)
         yield page
@@ -36,7 +36,7 @@ def mobile_viewport(navigate_to_page):
 @pytest.fixture
 def slow_internet():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         context = browser.new_context()
         page = context.new_page()
         client = page.context.new_cdp_session(page)
