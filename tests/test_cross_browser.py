@@ -5,6 +5,8 @@ from config.base import INVENTORY_URL
 from config.users import USER1_NAME, USERS_PASSWORD
 from pages.login_page import LoginPage
 
+pytestmark = [allure.label("feature", "Кроссбраузер")]
+
 
 @allure.title("TC_XB_001_002_003: Chromium, Firefox, WebKit")
 def test_tc_xb_001_002_003_browsers(any_browser_page):

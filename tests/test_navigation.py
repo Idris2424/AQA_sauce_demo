@@ -5,6 +5,9 @@ from config.base import INVENTORY_URL
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
 
+pytestmark = [allure.label("feature", "Навигация")]
+
+
 
 @allure.title("TC_UI_001: Логотип кликабелен → возврат на главную")
 def test_ui_001_logo_returns_to_main(navigate_to_page):

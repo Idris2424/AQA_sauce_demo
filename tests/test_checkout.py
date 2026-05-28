@@ -5,6 +5,9 @@ from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage
 
+pytestmark = [allure.label("feature", "Чекаут")]
+
+
 
 @allure.title("TC_CHECK_001: Полный успешный чекаут")
 def test_check_001_full_successful_checkout(navigate_to_page):

@@ -1,8 +1,11 @@
+import allure
 import pytest
 from playwright.sync_api import expect
 from config.base import URL_BASE, URL_BASE_ROOT, ERROR_MSG_LOGIN_USERNAME, ERROR_MSG_LOGIN_PASSWORD
 from config.users import USER1_NAME, USERS_PASSWORD
 from pages.login_page import LoginPage
+
+pytestmark = [allure.label("feature", "Авторизация")]
 
 
 # ---- TC_AUTH_001 ----

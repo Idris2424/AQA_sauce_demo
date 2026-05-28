@@ -1,6 +1,8 @@
-from playwright.sync_api import expect
+import allure
 from config.products import EXPECTED_NAMES, EXPECTED_PRICES
 from pages.inventory_page import InventoryPage
+
+pytestmark = [allure.label("feature", "Инвентарь")]
 
 
 # ---- TC_INV_001 ----

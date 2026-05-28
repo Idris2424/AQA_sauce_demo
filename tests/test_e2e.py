@@ -1,5 +1,5 @@
+import allure
 from playwright.sync_api import expect
-
 from config.base import URL_BASE, URL_BASE_ROOT
 from config.products import BACKPACK_NAME
 from config.users import USER1_NAME, USERS_PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE
@@ -8,6 +8,8 @@ from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
+
+pytestmark = [allure.label("feature", "е2е")]
 
 
 class TestCheckOut:

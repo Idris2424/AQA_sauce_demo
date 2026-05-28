@@ -5,6 +5,9 @@ from config.base import INVENTORY_URL
 from config.users import USER1_NAME, USERS_PASSWORD
 from pages.login_page import LoginPage
 
+pytestmark = [allure.label("feature", "Производительность")]
+
+
 
 @allure.title("TC_PERF_001: Время загрузки главной страницы < 3 сек")
 def test_tc_perf_001_load_time(page):

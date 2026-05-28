@@ -14,32 +14,32 @@ class CartPage(BasePage):
         self.empty_cart_message = self.page.locator(".title")
         self.checkout_button = self.page.locator("[data-test='checkout']")
 
-    @allure.step("Get all cart items")
+    @allure.step("Получить все элементы корзины")
     def all_cart_items(self):
         return self.cart_items.all()
 
-    @allure.step("Check price in basket")
+    @allure.step("Проверить цену в корзине")
     def check_price_in_basket(self):
         assert self.cart_price == "$29.99"
 
-    @allure.step("Remove item from basket")
+    @allure.step("Удалить товар из корзины по названию")
     def remove_item_by_name(self, item_name):
         item_id = item_name.lower().replace(' ', '-')
         self.page.click(f"button[id*='remove-{item_id}']")
 
-    @allure.step("Get cart items count")
+    @allure.step("Получить количество товаров в корзине")
     def get_cart_items_count(self):
         return self.cart_items.count()
 
-    @allure.step("Click continue-shopping button")
+    @allure.step("Нажать кнопку 'Продолжить покупки'")
     def click_continue_shopping(self):
         self.continue_shopping_btn.click()
 
-    @allure.step("Verify cart empty message")
+    @allure.step("Проверить сообщение о пустой корзине")
     def verify_empty_message(self):
         return self.empty_cart_message.is_visible()
 
-    @allure.step("Click checkout button")
+    @allure.step("Нажать кнопку 'Оформить заказ'")
     def click_checkout(self):
         self.checkout_button.click()
 

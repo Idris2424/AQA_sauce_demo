@@ -8,6 +8,8 @@ from pages.cart_page import CartPage
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
 
+pytestmark = [allure.label("feature", "Корзина")]
+
 
 @allure.title("TC_CART_001: Добавление одного товара")
 def test_cart_001(page):
